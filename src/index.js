@@ -1,16 +1,38 @@
-import store from "./store"
-import { bugAdded, bugRemoved, bugResolved } from "./actionCreator";
+import configureStore from "./store/configStore";
+import { 
+    bugAdded, 
+    bugRemoved, 
+    bugAssigned, 
+    bugResolved, 
+    getUnresolvedBugs ,
+    getBugsByUser
+} from "./store/bugs";
+import { projectAdded } from "./store/projects";
+import { userAdded } from "./store/users";
+
+const store = configureStore();
 
 const unsubscribe = store.subscribe(() => {
     console.log("Store changed", store.getState());
 })
 
-store.dispatch(bugAdded("Bug 1"));
+//user actions
+store.dispatch(userAdded({name: "user 1"}))
+store.dispatch(userAdded({name: "user 2"}))
 
-unsubscribe();
+//project actions
+store.dispatch(projectAdded({name: "project 1"}));
+
+//bug actions
+store.dispatch(bugAdded({ description: "Bug1" }));
+store.dispatch(bugAdded({ description: "bug2"}));
+store.dispatch(bugAdded({ description: "bug3"}));
+
+store.dispatch(bugAssigned({bugId: 1, userId: 1}));
+
+store.dispatch(bugResolved({id: 1}));
 
 // store.dispatch(bugRemoved(1));
 
-store.dispatch(bugResolved(1));
-
-console.log(store.getState());
+const bugs = getBugsByUser(2)(store.getState());
+console.log(bugs);
