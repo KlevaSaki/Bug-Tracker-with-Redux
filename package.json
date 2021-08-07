@@ -4,21 +4,31 @@
     "description": "Redux Starter Project",
     "main": "index.js",
     "scripts": {
-        "start": "webpack-dev-server --config ./webpack.config.js"
+        "start": "webpack-dev-server --config ./webpack.config.js",
+        "test": "jest --watch"
     },
     "keywords": [],
     "author": "Mosh Hamedani",
     "license": "ISC",
     "devDependencies": {
+        "@babel/core": "^7.14.8",
+        "@babel/plugin-transform-runtime": "^7.15.0",
+        "@babel/preset-env": "^7.14.9",
+        "@types/jest": "^26.0.24",
+        "axios-mock-adapter": "^1.19.0",
+        "babel-jest": "^27.0.6",
+        "jest": "^27.0.6",
         "webpack": "4.41.6",
         "webpack-cli": "3.3.11",
         "webpack-dev-server": "3.10.3"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.6.1",
+        "axios": "^0.21.1",
         "immer": "^9.0.3",
         "immutable": "^4.0.0-rc.12",
         "lodash": "^4.17.21",
+        "moment": "^2.29.1",
         "path": "^0.12.7",
         "redux": "^4.1.0",
         "redux-devtools-extension": "^2.13.9",
